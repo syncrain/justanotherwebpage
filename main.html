@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative webpage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 200%;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .background-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            width: 33%;
+            transform: translateY(-50%);
+            text-align: left;
+        }
+        .content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin: 0;
+        }
+        .content h1 span {
+            display: block;
+        }
+        .content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1em;
+            font-style: italic;
+            margin: 0;
+        }
+        .top-right {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .bottom-left {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.9em;
+        }
+        .bottom-left a {
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .bottom-right {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.9em;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+        }
+        .scroll-indicator i {
+            font-size: 2em;
+        }
+        .menu-bar {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            cursor: pointer;
+        }
+        .menu-bar div {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            margin: 6px 0;
+        }
+        /* Dropdown Menu */
+        .dropdown-menu {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            top: 80px;
+            left: 40px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            transition: visibility 1s, opacity 0.5s ease; 
+            font-family: 'Playfair Display', serif;
+        }
+        .dropdown-menu a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+        }
+        .menu-bar:hover + .dropdown-menu,
+        .dropdown-menu:hover {
+            visibility: visible;
+            opacity: 1;
+            transition-delay: 0.2s; 
+        }
+        /* Show about-menu on hover */
+        .about-menu {
+            display: none; 
+            padding-left: 20px;
+        }
+        .dropdown-menu:hover .about-menu {
+            display: block; 
+        }
+        .motivating-text {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: white;
+        }
+        .motivating-text p {
+            margin: 0;
+        }
+        .text-overlay {
+            position: absolute;
+            top: 45%; /* Adjusted for positioning */
+            left: 5%;
+            width: 90%;
+            text-align: center;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 2em; /* Adjust size as needed */
+            opacity: 0; /* Start hidden */
+            transition: opacity 1s ease; /* Transition for fade effect */
+            z-index: 1; /* Make sure it's above the video */
+        }
+        .text-overlay.fade-in {
+            opacity: 1; /* Fade in to visible */
+        }
+        .text-overlay.fade-out {
+            opacity: 0; /* Fade out */
+        }
+    </style>
+</head>
+<body>
+    <div class="background-video" id="backgroundVideo1">
+        <video id="video1" autoplay muted loop preload="auto" playsinline>
+            <source src="22619-328940133.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="background-video" id="backgroundVideo2" style="display: none;">
+        <video id="video2" muted loop preload="auto" playsinline>
+            <source src="9239758-uhd_3840_2160_25fps.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="text-overlay" id="textOverlay">"The only limit to our realization of <br> tomorrow is our doubts of today."</div>
+    </div>
+    <div class="menu-bar">
+        <div></div>
+        <div></div>
+    </div>
+    <div class="dropdown-menu">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <div class="about-menu">
+            <p>About Myself</p>
+            <p>I’m (yourname), a first-year student and a computer enthusiast with a curiosity for technology and a drive to learn more every day.</p>
+        </div>
+        <a href="#">Menu</a>
+    </div>
+    <div class="content">
+        <h1>
+            <span>Crafting Digital Experiences</span>
+            <span>with Passion and Precision</span>
+        </h1>
+        <h2>- (yourname)</h2>
+    </div>
+    <div class="bottom-left">
+        <a href="(your instalink)" target="_blank">Instagram</a>
+    </div>
+    <div class="bottom-right">
+        <span>(your mail)</span>
+        <i class="fas fa-arrow-right"></i>
+    </div>
+    <div class="scroll-indicator" id="scrollIndicator">
+        <i class="fas fa-arrow-down"></i>
+        <p>Scroll for more</p>
+    </div>
+    <div class="scroll-indicator" id="scrollIndicator2" style="display: none;">
+        <i class="fas fa-arrow-up"></i>
+        <p>Scroll up</p>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var video1 = document.getElementById('video1');
+            var video2 = document.getElementById('video2');
+            var backgroundVideo1 = document.getElementById('backgroundVideo1');
+            var backgroundVideo2 = document.getElementById('backgroundVideo2');
+            var scrollIndicator = document.getElementById('scrollIndicator');
+            var scrollIndicator2 = document.getElementById('scrollIndicator2');
+            var textOverlay = document.getElementById('textOverlay'); // Select the text overlay
+            var scrollPosition = window.scrollY;
+            var windowHeight = window.innerHeight;
+
+            if (scrollPosition > windowHeight * 0.6) {
+                // Show second background video and related elements
+                backgroundVideo1.style.display = 'none';
+                backgroundVideo2.style.display = 'block';
+                video2.play();
+                scrollIndicator.style.display = 'none';
+                scrollIndicator2.style.display = 'block';
+                
+                // Fade in the text overlay
+                textOverlay.classList.add('fade-in');
+                textOverlay.classList.remove('fade-out'); // Ensure fade-out class is removed
+            } else if (scrollPosition < windowHeight * 0.4) {
+                // Show first background video and related elements
+                backgroundVideo1.style.display = 'block';
+                backgroundVideo2.style.display = 'none';
+                scrollIndicator.style.display = 'block';
+                scrollIndicator2.style.display = 'none';
+                
+                // Fade out the text overlay
+                textOverlay.classList.remove('fade-in');
+                textOverlay.classList.add('fade-out'); // Ensure fade-in class is removed
+            }
+        });
+
+        // Automatic scrolling for smoother user experience
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        scrollIndicator.addEventListener('click', () => {
+            window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+        });
+        
+        const scrollIndicator2 = document.getElementById('scrollIndicator2');
+        scrollIndicator2.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
