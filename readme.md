@@ -11,7 +11,7 @@ Welcome to my portfolio website! This project showcases my work in digital exper
 - [License](#license)
 
 ## About Me
-I'm **Anand Raj Gautam**, a first-year student and a computer enthusiast with a curiosity for technology and a drive to learn more every day. This portfolio reflects my journey and showcases my skills in web development and digital media.
+I'm **Keshav Verma**, a second-year student and a computer enthusiast with a curiosity for technology and a drive to learn more every day. This portfolio reflects my journey and showcases my skills in web development and digital media.
 
 ## Technologies Used
 - HTML
